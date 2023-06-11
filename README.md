@@ -1,7 +1,7 @@
 # neovim
 My neovim setup
 
-Required to install the latest neovim! 
+Required to install the latest neovim and intelephense! 
 
 Install on Linux:
 1. Clone the repo down to a ~/.config/nvim folder

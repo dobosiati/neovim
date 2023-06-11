@@ -1,9 +1,3 @@
--- Check if the .git folder exists in the root directory
-if vim.fn.isdirectory('.git') == 0 then
-  vim.keymap.set('n', '<C-n>', '<cmd>lua vim.notify("telescope is turned off becasue there is not git initialized here.")<CR>', {})
-  return
-end
-
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
   vim.notify("telescope not found!")
@@ -12,8 +6,16 @@ end
 
 local builtin = require "telescope.builtin"
 
-vim.keymap.set('n', '<C-n>', builtin.find_files, {})
-vim.keymap.set('n', '<C-e>', builtin.oldfiles, {})
+local function has_git()
+  if vim.fn.isdirectory('.git') == 1 then
+    return ":lua require('telescope.builtin').find_files()<CR>"
+  else
+    return ":lua vim.notify('telescope is turned off because there is no git initialized here.')<CR>"
+  end
+end
+
+vim.keymap.set('n', '<C-n>', has_git(), {})
+vim.keymap.set('n', '<C-e>', ":lua require('telescope.builtin').oldfiles({ cwd = vim.fn.getcwd() })<CR>", {})
 vim.keymap.set('n', '<leader><leader>', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
@@ -26,7 +28,6 @@ telescope.setup {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
-
 
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -116,4 +117,3 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
-

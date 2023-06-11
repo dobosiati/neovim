@@ -5,7 +5,8 @@ if not status_ok then
 end
 
 notify.setup({
-  background_colour = "#000000",
+  render = "minimal",
+  -- background_colour = "#000000",
 })
 
 vim.notify = notify

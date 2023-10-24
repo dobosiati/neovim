@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-vim.keymap.set('n', '<A-1>', ':NvimTreeToggle<CR>', {})
+vim.keymap.set('n', '<A-q>', ':NvimTreeToggle<CR>', {})
 
 nvim_tree.setup {
   git = {

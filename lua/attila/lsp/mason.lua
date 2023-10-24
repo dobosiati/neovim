@@ -2,12 +2,13 @@ local servers = {
 	"lua_ls",
   "intelephense",
 	-- "cssls",
-	-- "html",
+	"html",
 	-- "tsserver",
 	-- "pyright",
 	-- "bashls",
   -- "jsonls",
 	-- "yamlls",
+  "tailwindcss",
 }
 
 local settings = {

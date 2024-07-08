@@ -56,12 +56,15 @@ nvim_tree.setup {
     width = 30,
     side = "left",
   },
-  on_attach = function ()
+  on_attach = function (bufnr)
     local api_status_ok, api = pcall(require, "nvim-tree.api")
     if not api_status_ok then
       vim.notify("nvim-tree.api not found!")
       return
     end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
 
     vim.keymap.set('n', '<CR>', api.node.open.edit, {})
     vim.keymap.set('n', 'q', api.tree.close, {})

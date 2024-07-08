@@ -26,6 +26,7 @@ vim.cmd([[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+vim.notify("luasnip not found!")
 	return
 end
 
@@ -40,57 +41,63 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  use "wbthomason/packer.nvim"          -- Have packer manage itself
-  use "nvim-lua/plenary.nvim"           -- Useful lua functions used by lots of plugins 
-  use "windwp/nvim-autopairs"           -- Autopairs, integrates with both cmp and treesitter
-  use "akinsho/bufferline.nvim"         -- Handling tabs (buffers)
-  use "famiu/bufdelete.nvim"            -- Handling buffer closings
-  use "akinsho/toggleterm.nvim"         -- Toggles terminal
-  use "mg979/vim-visual-multi"          -- Handles mulitple cursors and selection
+    use "wbthomason/packer.nvim"          -- Have packer manage itself
+    use "nvim-lua/plenary.nvim"           -- Useful lua functions used by lots of plugins 
+    use "windwp/nvim-autopairs"           -- Autopairs, integrates with both cmp and treesitter
+    use "akinsho/bufferline.nvim"         -- Handling tabs (buffers)
+    use "famiu/bufdelete.nvim"            -- Handling buffer closings
+    use "akinsho/toggleterm.nvim"         -- Toggles terminal
+    use "mg979/vim-visual-multi"          -- Handles mulitple cursors and selection
 
-  -- Commenting
-  use "numToStr/Comment.nvim"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+    -- Commenting
+    use "numToStr/Comment.nvim"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
-  -- File explorer
-  use "nvim-tree/nvim-tree.lua"
-  use "nvim-tree/nvim-web-devicons"
+    -- Colorschemes
+    use "lunarvim/colorschemes"
+    use "folke/tokyonight.nvim"
 
-  -- Colorschemes
-  use "lunarvim/colorschemes"
-  use "folke/tokyonight.nvim"
+    -- File explorer
+    use "nvim-tree/nvim-tree.lua"
+    use "nvim-tree/nvim-web-devicons"
 
-  -- Notifications
-  use "rcarriga/nvim-notify"
+    -- Notifications
+    use "rcarriga/nvim-notify"
 
-  -- CMP
-  use "hrsh7th/nvim-cmp"                -- The completion plugin
-  use "hrsh7th/cmp-buffer"              -- Buffer completions
-  use "hrsh7th/cmp-path"                -- Path completions 
+    -- CMP
+    use "hrsh7th/nvim-cmp"                -- The completion plugin
+    use "hrsh7th/cmp-buffer"              -- Buffer completions
+    use "hrsh7th/cmp-path"                -- Path completions
+    -- Snippet completions
+    use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
+    use "L3MON4D3/LuaSnip"
 
-  -- Snippet completions
-	use "saadparwaiz1/cmp_luasnip"
-	use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
+    -- LSP
+    use "neovim/nvim-lspconfig"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
 
-  -- Snippets 
-  use "L3MON4D3/LuaSnip"
+    -- Telescope
+    use "nvim-telescope/telescope.nvim"
 
-  -- LSP
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "jose-elias-alvarez/null-ls.nvim"
+    -- Treesitter
+    use "nvim-treesitter/nvim-treesitter"
+    use "EmranMR/tree-sitter-blade"
 
-	-- Telescope
-	use "nvim-telescope/telescope.nvim"
+    use({
+        "kdheepak/lazygit.nvim",
+        -- optional for floating window border decoration
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+    })
 
-  -- Treesitter
-  use "nvim-treesitter/nvim-treesitter"
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if PACKER_BOOTSTRAP then
+    require("packer").sync()
+    end
 end)

@@ -1,14 +1,10 @@
 local servers = {
 	"lua_ls",
-  "intelephense",
+	"intelephense",
 	-- "cssls",
 	"html",
-	-- "tsserver",
-	-- "pyright",
-	-- "bashls",
-  -- "jsonls",
-	-- "yamlls",
-  "tailwindcss",
+	"tailwindcss",
+    "css_variables",
 }
 
 local settings = {
@@ -32,6 +28,7 @@ require("mason-lspconfig").setup({
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
+	vim.notify("lspconfig not found!")
 	return
 end
 

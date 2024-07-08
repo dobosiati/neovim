@@ -14,9 +14,12 @@ local function has_git()
   end
 end
 
-vim.keymap.set('n', '<C-n>', has_git(), {})
-vim.keymap.set('n', '<C-e>', ":lua require('telescope.builtin').oldfiles({ cwd = vim.fn.getcwd() })<CR>", {})
+vim.keymap.set('n', '<C-n>', ":lua require('telescope.builtin').find_files()<CR>", {})
+vim.keymap.set('n', '<C-m>', ":lua require('telescope.builtin').find_files({ hidden = true, no_ignore = true })<CR>", {})
+vim.keymap.set('n', '<C-e>', ":lua require('telescope.builtin').oldfiles({ cwd = vim.fn.getcwd(), { hidden = true, no_ignore = true } })<CR>", {})
 vim.keymap.set('n', '<leader><leader>', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>ff', builtin.grep_string, {})
+vim.keymap.set('v', '<leader>ff', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
@@ -100,7 +103,7 @@ telescope.setup {
       },
     },
   },
-    pickers = {
+  pickers = {
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,

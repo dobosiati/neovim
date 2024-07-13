@@ -13,7 +13,6 @@ vim.g.maplocalleader = " "
 -- Remove highlights
 keymap("n", "<ESC>", ":nohlsearch<CR>", opts)
 
--- Normal --
 -- Better window navigation
 keymap("n", "<C-Left>", "<C-w>h", opts)
 keymap("n", "<C-Down>", "<C-w>j", opts)
@@ -26,6 +25,14 @@ keymap("n", "<C-S-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-S-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-S-Right>", ":vertical resize +2<CR>", opts)
 
+-- Select word
+keymap('n', '<leader>w', "viw", opts)
+
+-- Select all
+keymap('n', '<C-a>', "ggVG<CR>", opts)
+keymap('i', '<C-a>', "<esc>ggVG<CR>", opts)
+keymap('v', '<C-a>', "<esc>ggVG<CR>", opts)
+
 -- Save file
 keymap("n", "<C-s>", ":w<CR>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>", opts)
@@ -36,7 +43,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Close buffer
-keymap("n", "<C-w>", ":Bdelete<CR>", opts)
+keymap("n", "qq", ":Bdelete<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<C-j>", ":m .+1<CR>", opts)

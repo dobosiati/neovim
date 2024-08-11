@@ -48,6 +48,7 @@ return packer.startup(function(use)
     use "famiu/bufdelete.nvim"            -- Handling buffer closings
     use "akinsho/toggleterm.nvim"         -- Toggles terminal
     use "mg979/vim-visual-multi"          -- Handles mulitple cursors and selection
+    use "kylechui/nvim-surround"          -- Surround selections
 
     -- Commenting
     use "numToStr/Comment.nvim"
@@ -87,6 +88,7 @@ return packer.startup(function(use)
     use "nvim-treesitter/nvim-treesitter"
     use "EmranMR/tree-sitter-blade"
 
+    -- Git client
     use({
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
@@ -94,6 +96,23 @@ return packer.startup(function(use)
             "nvim-lua/plenary.nvim",
         },
     })
+
+    -- Database client
+    -- use {
+    --   "kndndrj/nvim-dbee",
+    --   requires = {
+    --       "MunifTanjim/nui.nvim",
+    --   },
+    --   run = function()
+    --       -- Install tries to automatically detect the install method.
+    --       -- if it fails, try calling it with one of these parameters:
+    --       --    "curl", "wget", "bitsadmin", "go"
+    --       require("dbee").install()
+    --   end,
+    --   -- config = function()
+    --   --     require("dbee").setup(--[[optional config]])
+    --   -- end
+    -- }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
